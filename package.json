@@ -6,6 +6,20 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:acidbutter96/API-bot.git"
+  },
+  "keywords": [
+    "keywords"
+  ],
   "author": "Marcos Pereira",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7",
+    "sucrase": "^3.17.0"
+  }
 }
