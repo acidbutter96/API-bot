@@ -26,7 +26,7 @@ const Message = new Schema({
         required: true
     },
 },{
-    timestamps: true
+    timestamps: { createdAt: 'timestamp' }
 });
 
 //Implementação do mongoosePaginate para paginação dos resultados quando listar for requisitado

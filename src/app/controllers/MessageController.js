@@ -23,48 +23,34 @@ class MessageController {
         const conversationExists = await Message.findOne({ conversationId: conversationId });
 
         if(conversationExists){
-            console.log("aaqui caralho")
-            const newMessage = await Message.create({
-                conversationId: conversationId,
-                from: from,
-                to: to,
-                text: "Oi, como posso ajudá-lo?"
-            }, (err) => {
-                if (err) return res.status(400).json({
-                    error: true,
-                    code: 130,
-                    message: err
-                });
-    
-                return res.status(200).json({
-                    error: false,
-                    message: req.body.text //mensagem recebida pelo  bot
-                });
-    
+            const messageSave = await Message.create(req.body);
+            console.log(messageSave)
+            return res.json({
+                error:false,
+                data:messageSave
             });
-        };
+        }
+
+        //simula a primeira frase do bot
 
         const newMessage = await Message.create({
             conversationId: conversationId,
-            from: from,
-            to: to,
-            text: text
-        }, (err) => {
-            if (err) return res.status(400).json({
-                error: true,
-                code: 130,
-                message: err
-            });
-
-            return res.status(200).json({
-                error: false,
-                message: req.body.text //mensagem recebida pelo  bot
-            });
-
+            from:to, 
+            to:from,
+            text:"Olá, como posso ajudar?"
         });
+        
+
+        return res.status(200).json({
+            error:false,
+            data: newMessage
+        });
+        
     }
 
     async showMessage(req,res){
+        //verificar se mensagem foi cadastrada
+
         const messageExists = await Message.findOne({_id:req.params.id},(err)=>{
             if(err) return res.status(400).json({
                 error:true,
@@ -72,6 +58,8 @@ class MessageController {
                 message: "Mensagem não encontrada"
             });
         });
+
+        //resposta da requisição
         return res.json({
             id:messageExists._id,
             conversationId:messageExists.conversationId,
@@ -86,7 +74,6 @@ class MessageController {
     async showConversation(req,res){
 
         const {conversationId} = req.query;
-        console.log(conversationId);
 
         if(!conversationId){
             return res.status(400).json({
@@ -98,24 +85,29 @@ class MessageController {
         
         const conversationIdExists = Message.find({conversationId:conversationId});
 
+        //paginação
+
         const { page = 1 } = req.query;
         const { limit = 30 } = req.query;
+
+        //Query usando paginate e filtrando pelo conversationId retornando as mensagens de forma ascendente
+
         await Message.paginate({
             conversationId:conversationId
         }, {
-            select: "",
+            select: "_id conversationId timestamp from to text",
             sort: { field: 'asc', test: 1 },
             page,
             limit
         }).then((messages) => {
             return res.json({
                 error: false,
-                messages: messages
+                messages: messages.docs
             })
         }).catch((err) => {
             return res.status(400).json({
                 error: true,
-                code: 106,
+                code: 151,
                 message: "Não foi possível processar a solicitação. Returned: " + err
             })
         })
