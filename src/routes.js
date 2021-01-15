@@ -12,17 +12,9 @@ const routes = new Router();
 //bots
 
 routes.get("/bots", BotController.index);
-
-routes.get("/bots/:id", (req, res) => {
-    return res.send(req.params.id);
-});
-
+routes.get("/bots/:id", BotController.show);
 routes.post("/bots", BotController.store);
-
-routes.put("/bots", (req, res) => {
-    //return res.response("to aqui");
-});
-
+routes.put("/bots", BotController.update);
 routes.delete("/bots/:id", authMiddleware, BotController.delete);
 
 //administrativo
