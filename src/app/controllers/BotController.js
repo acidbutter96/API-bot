@@ -6,8 +6,6 @@ class BotController{
     async store(req,res){
 
         const schema = Yup.object().shape({
-            id: Yup.string()
-                .required(),
             name: Yup.string()
                 .required()
         });
@@ -20,8 +18,8 @@ class BotController{
             });
         }
 
-        const idExists = await Bot.findOne({id: req.body.id});
-        if(idExists){
+        const nameExists = await Bot.findOne({name: req.body.name});
+        if(nameExists){
             return res.status(400).json({
                 error: true,
                 code: 102,
@@ -39,6 +37,31 @@ class BotController{
                 error: false,
                 message: "Bot cadastrado com sucesso"
             });
+        });
+    }
+
+    async delete(req,res){
+        const botExists = await Bot.findOne({_id:req.params.id});
+
+        if(!botExists){
+            return res.status(400).json({
+                error: true,
+                code: 121,
+                message: "Bot não encontrado"
+            });
+        }
+
+        const bot = await Bot.deleteOne({_id: req.params.id}, (err)=>{
+            if(err) return res.status(400).json({
+                error: true,
+                code: 122,
+                message: "Erro ao processar a solicitação"
+            })
+        });
+
+        return res.json({
+            error: false,
+            message: "Bot removido"
         });
     }
 }

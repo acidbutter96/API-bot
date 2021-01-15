@@ -1,10 +1,6 @@
-import mongoose from "mongoose";
+import {Schema, model} from "mongoose";
 
-const Bot = new mongoose.Schema({
-    id: {
-        type: String,
-        required: true
-    },
+const Bot = new Schema({   
     name: {
         type: String,
         required: true
@@ -13,4 +9,4 @@ const Bot = new mongoose.Schema({
     timestamps: true
 });
 
-export default mongoose.model("bot", Bot);
+export default model("bot", Bot);
