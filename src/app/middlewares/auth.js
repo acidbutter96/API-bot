@@ -9,7 +9,7 @@ export default async (req,res,next)=>{
 
     if(!authHeader) return res.status(401).json({
         error: true,
-        code: 130,
+        code: 120,
         message: "Erro: token não encontrado"
     });
 
@@ -22,7 +22,7 @@ export default async (req,res,next)=>{
     }catch(err){
         return res.status(401).json({
             error: true,
-            code: 131,
+            code: 121,
             message: "Erro: token inválido"
         });
     }

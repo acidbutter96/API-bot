@@ -1,3 +1,5 @@
+//Para futura implementação de cadastro a novos usuários na parte administrativa do site, atualmente não está sendo utilizado
+
 import * as Yup from "yup";
 import bcrypt from "bcryptjs";
 import User from "../models/User";
@@ -38,7 +40,7 @@ class UserController{
             if(err) return res.status(400).json({
                 error: true,
                 code: 101,
-                message: "Error: usuário não cadastrado"
+                message: "Error: usuário não cadastrado com sucesso"
             });
 
             return res.status(200).json({

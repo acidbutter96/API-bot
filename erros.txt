@@ -1,0 +1,33 @@
+101:	Error: bot não cadastrado com sucesso
+101:	Error: usuário não cadastrado com sucesso
+
+102:	Error: bot já cadastrado
+102:	Error: usuário já existe
+
+103:	Error: id já cadastrado
+103:	Usuário e senhas obrigatórios**
+
+104:	Insira usuário e senha****
+
+105:
+
+106:	Usuário não cadastrado, entrar em contato com adm do sistema
+106:	Não foi possível processar a solicitação Returned: 
+106:	Não foi possível executar a solicitação. Returned:
+106:	Bot não foi editado
+106:	Erro ao processar a solicitação
+
+
+107:
+
+108:	Dados inválidos
+108:	Dados inválidos
+
+109:	Bot não encontrado
+109:	Bot não encontrado
+
+110:	Esse id já foi cadastrado em outro bot
+110:	Esse nome já foi cadastrado em outro bot
+
+111:	Bot não foi editado
+

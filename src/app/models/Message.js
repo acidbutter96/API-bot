@@ -1,15 +1,11 @@
+import { Timestamp } from "mongodb";
 import {Schema, model} from "mongoose";
+import mongoosePaginate from "mongoose-paginate-v2";
+
+//Definir schema das mensagens
 
 const Message = new Schema({
-    id:{
-        type: String,
-        required: true
-    },
     conversationId:{
-        type: String,
-        required: true
-    },
-    timestamp:{
         type: String,
         required: true
     },
@@ -33,4 +29,7 @@ const Message = new Schema({
     timestamps: true
 });
 
-export default model("messages",Message);
+//Implementação do mongoosePaginate para paginação dos resultados quando listar for requisitado
+Message.plugin(mongoosePaginate);
+
+export default model("message",Message);

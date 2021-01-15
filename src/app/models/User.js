@@ -1,5 +1,6 @@
 import {Schema, model} from "mongoose";
 
+//Definir schema do usuário
 const User = new Schema({
     user:{
         type: String,

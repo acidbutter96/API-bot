@@ -23,7 +23,7 @@ class BotController {
             return res.status(400).json({
                 error: true,
                 code: 106,
-                message: "Não foi possível processar a solicitação " + err
+                message: "Não foi possível processar a solicitação. Returned: " + err
             })
         })
     }
@@ -39,7 +39,7 @@ class BotController {
 
             return res.status(400).json({
                 error: true,
-                code: 107,
+                code: 106,
                 message: "Não foi possível executar a solicitação. Returned: " + err
             })
         });
@@ -60,8 +60,8 @@ class BotController {
         if (!(await schema.isValid(req.body))) {
             return res.status(400).json({
                 error: true,
-                code: 106,
-                message: "Error: Dados inválidos"
+                code: 108,
+                message: "Dados inválidos"
             });
         }
 
@@ -161,7 +161,7 @@ class BotController {
         }, (err) => {
             if (err) return res.status(400).json({
                 error: true,
-                code: 111,
+                code: 106,
                 message: "Bot não foi editado"
             });
 
@@ -180,7 +180,7 @@ class BotController {
         if (!botExists) {
             return res.status(400).json({
                 error: true,
-                code: 121,
+                code: 109,
                 message: "Bot não encontrado"
             });
         }
@@ -188,7 +188,7 @@ class BotController {
         const bot = await Bot.deleteOne({ id: req.params.id }, (err) => {
             if (err) return res.status(400).json({
                 error: true,
-                code: 122,
+                code: 106,
                 message: "Erro ao processar a solicitação"
             })
         });
