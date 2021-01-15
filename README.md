@@ -1,4 +1,5 @@
-<!-- ⚠️ This README has been generated from the file(s) "blueprint.md" ⚠️--><h1 align="center">
+<!-- ⚠️ This README has been generated from the file(s) "blueprint.md" ⚠️-->
+<h1 align="center">
     <a href="https://github.com/acidbutter96/API-bot">🔗 API Chat Bot</a>
 </h1>
 
