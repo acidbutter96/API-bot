@@ -140,8 +140,6 @@ class BotController {
                 });
             }
         }
-
-        
         
         if(Name != name){
             const NameExists = await Bot.findOne({name: Name});

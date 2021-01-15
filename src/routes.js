@@ -11,13 +11,13 @@ const routes = new Router();
 //=========Rotas============
 //bots
 
-routes.get("/bots", BotController.index);
-routes.get("/bots/:id", BotController.show);
-routes.post("/bots", BotController.store);
-routes.put("/bots", BotController.update);
+routes.get("/bots", authMiddleware, BotController.index);
+routes.get("/bots/:id", authMiddleware, BotController.show);
+routes.post("/bots", authMiddleware, BotController.store);
+routes.put("/bots", authMiddleware, BotController.update);
 routes.delete("/bots/:id", authMiddleware, BotController.delete);
 
 //administrativo
-routes.post("/login",LoginController.store);
+routes.post("/login", LoginController.store);
 
 export default routes;

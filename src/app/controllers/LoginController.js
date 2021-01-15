@@ -6,6 +6,7 @@ import configAuth from "../../config/auth";
 
 
 class LoginController {
+
     async store(req, res) {
         const adminExists = await User.findOne({user: "admin"});
 
@@ -50,6 +51,8 @@ class LoginController {
                 message: "Senha inválida"
             });
         }
+
+        console.log(req.botID);
 
         return res.json({
             id: userExists._id,
