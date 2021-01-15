@@ -1,5 +1,6 @@
 import * as Yup from "yup";
 import Bot from "../models/Bot";
+import User from "../models/User";
 
 
 class BotController{
@@ -63,6 +64,21 @@ class BotController{
             error: false,
             message: "Bot removido"
         });
+    }
+
+    async index(req,res){
+        await Bot.find({}).then((users)=>{
+            return res.json({
+                error: false,
+                users: users
+            })
+        }).catch((err)=>{
+            return res.status(400).json({
+                error: true,
+                code: 104,
+                message: "Não foi possível processar a solicitação "+err
+            })
+        })
     }
 }
 
